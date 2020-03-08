@@ -63,9 +63,12 @@ public class TokenRingClient extends JFrame implements ActionListener {
 
          String s = e.getActionCommand();
          byte data[] = s.getBytes();
+         
+         InetAddress ip = InetAddress.getByName("ip");
+         byte[] bytes = ip.getAddress();
 
          sendPacket = new DatagramPacket( data, data.length,
-            InetAddress.getLocalHost(), 5000 );
+        		 InetAddress.getByAddress(bytes), 5000 );
          socket.send( sendPacket );
          display.setCaretPosition(
             display.getText().length() );
